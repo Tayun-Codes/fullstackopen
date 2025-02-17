@@ -70,12 +70,14 @@ const Statistics = ({ type, counter, all }) => {
     return (
       <div>
         <h2>statistics</h2>
-        <StatisticLine type={type[0]} counter={counter[0]} />
-        <StatisticLine type={type[1]} counter={counter[1]} />
-        <StatisticLine type={type[2]} counter={counter[2]} />
-        <StatisticLine type={type[3]} counter={counter[3]} />
-        <StatisticLine type={type[4]} counter={counter[4]} />
-        <StatisticLine type={type[5]} counter={counter[5]} />
+        <table>
+          <StatisticLine type={type[0]} counter={counter[0]} />
+          <StatisticLine type={type[1]} counter={counter[1]} />
+          <StatisticLine type={type[2]} counter={counter[2]} />
+          <StatisticLine type={type[3]} counter={counter[3]} />
+          <StatisticLine type={type[4]} counter={counter[4]} />
+          <StatisticLine type={type[5]} counter={counter[5]} />
+        </table>
       </div>
     )
   }
@@ -84,7 +86,7 @@ const Statistics = ({ type, counter, all }) => {
 const StatisticLine = ({ type, counter }) => {
   console.log(type, counter)
   return (
-    <div>{type}: {counter}</div>
+    <tr><td>{type}:</td> <td>{counter}</td></tr>
   )
 }
 
