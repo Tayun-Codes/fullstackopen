@@ -7,8 +7,8 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [all, setAll] = useState(0)
-  const average = all === 0 ? 0 : (good-bad)/all //first part is to ensure we don't divide by (all=)0
-  const positive = `${all === 0 ? 0 : (good)/all*100} %`
+  const average = all === 0 ? 0 : (good - bad) / all //first part is to ensure we don't divide by (all=)0
+  const positive = `${all === 0 ? 0 : (good) / all * 100} %`
 
   const increaseGood = () => {
     // console.log('increasing good, value before', good)
@@ -28,19 +28,17 @@ const App = () => {
     setAll(all + 1)
   }
 
+  const type = ["good", "neutral", "bad", "all", "average", "positive"]
+  const counter = [good, neutral, bad, all, average, positive]
+
+
   return (
     <div>
       <Header />
-      <Button onClick={increaseGood} text="good" average={average}/>
+      <Button onClick={increaseGood} text="good" average={average} />
       <Button onClick={increaseNeutral} text="neutral" average={average} />
       <Button onClick={increaseBad} text="bad" average={average} />
-      <Statistics />
-      <Display type="good" counter={good} />
-      <Display type="neutral" counter={neutral} />
-      <Display type="bad" counter={bad} />
-      <Display type="all" counter={all} />
-      <Display type="average" counter={average} />
-      <Display type="positive" counter={positive} />
+      <Statistics type={type} counter={counter} all={all} />
     </div>
   )
 }
@@ -58,11 +56,34 @@ const Button = ({ onClick, text }) => {
     </button>
   )
 }
-const Statistics = () => (<h2>statistics</h2>)
+const Statistics = ({ type, counter, all }) => {
+  console.log(all)
+  if (all == 0) {
+    return (
+      <div>
+        <h2>statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h2>statistics</h2>
+        <Display type={type[0]} counter={counter[0]} />
+        <Display type={type[1]} counter={counter[1]} />
+        <Display type={type[2]} counter={counter[2]} />
+        <Display type={type[3]} counter={counter[3]} />
+        <Display type={type[4]} counter={counter[4]} />
+        <Display type={type[5]} counter={counter[5]} />
+      </div>
+    )
+  }
+}
 
 const Display = ({ type, counter }) => {
+  console.log(type, counter)
   return (
-    <p>{type}: {counter}</p>
+    <div>{type}: {counter}</div>
   )
 }
 
