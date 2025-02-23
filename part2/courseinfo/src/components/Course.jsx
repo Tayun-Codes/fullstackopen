@@ -1,17 +1,23 @@
-const Course = ({ course }) => {
-    // console.log(course.parts);
-    // console.log(course.parts.map((a) => console.log(a)))
+import Total from './Total'
+
+const Course = ({ courses }) => {
+    // console.log(courses);
+    // courses.map((a) => console.log(a.parts))
+    // courses.map((a) => console.log(a.parts.map((b) => b.exercises)));
 
     return (
         <div>
-            <h1>{course.name}</h1>
-            <div>
-                {course.parts.map((a) =>
-                    <Part part={a} key={a.id} name={a.name} />
-                )}
-
-            </div>
-
+            {courses.map((a) =>
+                <div>
+                    <h2>{a.name}</h2>
+                    {a.parts.map((b) =>
+                        <>
+                            <Part part={b} key={b.id} name={b.name} />
+                        </>
+                    )}
+                    <Total parts={a.parts} />
+                </div>
+            )}
         </div>
     )
 }
@@ -24,3 +30,5 @@ const Part = ({ part }) => {
 }
 
 export default Course
+
+
