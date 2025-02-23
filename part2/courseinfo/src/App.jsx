@@ -1,5 +1,5 @@
 import Course from './components/Course'
-
+import Total from './components/Total'
 
 const App = () => {
   const course = {
@@ -24,7 +24,12 @@ const App = () => {
     ]
   }
 
-  return <Course course={course} />
+  return (
+    <div>
+      <Course course={course} />
+      <Total exercises={course.parts} />
+    </div>
+  )
 }
 
 export default App
