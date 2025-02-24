@@ -3,19 +3,21 @@ import Person from './components/Person'
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
   ]) 
   //controlling the form input element
   const [newName, setNewName] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
-    const nameObject = {
-      content: newName,
-      id: String(persons.length + 1)
+    if (persons.map(person=>person.content).includes(newName)) {
+      alert(`${newName} is already added to phonebook`)
+    } else {
+      const nameObject = {
+        content: newName,
+        id: String(persons.length + 1)
+      }
+      setPersons(persons.concat(nameObject))
     }
-
-    setPersons(persons.concat(nameObject))
     setNewName('')
   }
 
